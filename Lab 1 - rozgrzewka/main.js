@@ -6,6 +6,7 @@ function addInput() {
     input.className = 'input';
     input.onchange = przelicz;
     div.appendChild(input);
+    addDeleteButton();
 }
 
 function addDeleteButton() {
@@ -57,9 +58,7 @@ function przelicz() {
 
 function main() {
   addInputs();
-  document.getElementById('calculate').addEventListener('click', przelicz);
   document.getElementById('add-item').addEventListener('click', addInput);
-
 }
 
 document.addEventListener("DOMContentLoaded", main);
