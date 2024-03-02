@@ -1,7 +1,7 @@
 
 function addInput() {
-    var div = document.getElementsByClassName('inputs')[0];
-    var input = document.createElement('input');
+    let div = document.getElementsByClassName('inputs')[0];
+    let input = document.createElement('input');
     input.type = 'text';
     input.className = 'input';
     input.onchange = przelicz;
@@ -10,8 +10,8 @@ function addInput() {
 }
 
 function addDeleteButton() {
-  var div = document.getElementsByClassName('inputs')[0];
-  var button = document.createElement('button');
+  let div = document.getElementsByClassName('inputs')[0];
+  let button = document.createElement('button');
   button.innerHTML = 'Usuń';
   button.onclick = function() {
     div.removeChild(this.previousSibling);
@@ -22,8 +22,8 @@ function addDeleteButton() {
 }
 
 function addInputs() {
-    var div = document.getElementsByClassName('inputs')[0];
-    for (var i = 0; i < 4; i++) {
+    let div = document.getElementsByClassName('inputs')[0];
+    for (let i = 0; i < 4; i++) {
       var input = document.createElement('input');
         input.type = 'text';
         input.className = 'input';
@@ -34,10 +34,10 @@ function addInputs() {
 }
 
 function przelicz() {
-    var pola = document.querySelectorAll('input[type="text"]');
-    var suma = 0;
-    var min = Infinity;
-    var max = -Infinity;
+    let pola = document.querySelectorAll('input[type="text"]');
+    let suma = 0;
+    let min = Infinity;
+    let max = -Infinity;
 
     pola.forEach(function(pole) {
       var wartosc = parseFloat(pole.value);
