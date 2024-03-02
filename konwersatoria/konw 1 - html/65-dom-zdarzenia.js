@@ -17,8 +17,6 @@ function start() {
 
     select("#btn")
         .addEventListener('click', () => {
-            kulka.style.top = 200 + "px"
-            kulka.style.left = 100 + "px"
         })
 
     kulka = select("#kulka")
