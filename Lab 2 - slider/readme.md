@@ -15,7 +15,7 @@
 
 
 ### Przykłady:
-> https://splidejs.com/  
+> https://splidejs.com/
 > https://smartslider3.com/ken-burns/  
 > https://glidejs.com/
 
