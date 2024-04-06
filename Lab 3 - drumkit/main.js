@@ -1,10 +1,4 @@
-// const sound = document.querySelectorAll('sound')
-// const times = []
-
-// times.push({
-//     key: 'a',
-//     time: 123
-// })
+// Panda 4
 
 const sounds = {
   a: document.querySelector("#s1"),
@@ -18,18 +12,14 @@ const sounds = {
   q: document.querySelector("#s9"),
 };
 
-// addEventListener('keypress',(ev) => {
-//     const key = ev.key
-//     const sound = sounds[key]
-//     console.dir(sound.dataset.key)
-//     sound.currentTime= 0
-//     sound.play()
-
-// })
-
 const recordedChannels = [[], [], [], []];
 let selectedChannelIndex = 0;
 let isRecording = false;
+
+// Metronome
+let metronomeInterval = null;
+let isMetronomeOn = false;
+let beatsPerMinute = 120;
 
 document.addEventListener("keypress", (ev) => {
   const sound = sounds[ev.key];
@@ -37,48 +27,86 @@ document.addEventListener("keypress", (ev) => {
     sound.currentTime = 0;
     sound.play();
     if (isRecording) {
-      const channelIndex = 0;
-      recordedChannels[selectedChannelIndex].push({ time: Date.now(), key: ev.key });
+      recordedChannels[selectedChannelIndex].push({
+        time: Date.now(),
+        key: ev.key,
+      });
     }
   }
 });
 
 document.getElementById("recordButton").addEventListener("click", () => {
   isRecording = !isRecording;
-  if (isRecording) {
-    console.log("Recording started");
-  } else {
-    console.log("Recording stopped");
-  }
-  if (isRecording) {
-    recordedChannels.forEach((channel) => {
-      channel.length = 0;
-    });
-  }
 
   selectedChannelIndex = parseInt(
     document.getElementById("channelSelect").value
   );
+
+  if (isRecording) {
+    console.log("Recording started");
+    recordedChannels[selectedChannelIndex] = [];
+  } else {
+    console.log("Recording stopped");
+  }
 });
 
-document.getElementById("playButton").addEventListener("click", () => {
-  recordedChannels.forEach((channel) => {
-    let startTime = null;
-    channel.forEach((note) => {
-      if (!startTime) {
-        startTime = note.time;
-      }
-      const playTime = note.time - startTime;
-      setTimeout(() => {
-        const sound = sounds[note.key];
-        sound.currentTime = 0;
-        sound.play();
-      }, playTime);
+document
+  .getElementById("playSingleChannelButton")
+  .addEventListener("click", () => {
+    const selectedChannel = recordedChannels[selectedChannelIndex];
+    playChannel(selectedChannel);
+  });
+
+document
+  .getElementById("playAllChannelsButton")
+  .addEventListener("click", () => {
+    recordedChannels.forEach((channel) => {
+      playChannel(channel);
     });
   });
+
+function playChannel(channel) {
+  let startTime = null;
+  channel.forEach((note) => {
+    if (!startTime) {
+      startTime = note.time;
+    }
+    const playTime = note.time - startTime;
+    setTimeout(() => {
+      const sound = sounds[note.key];
+      sound.currentTime = 0;
+      sound.play();
+    }, playTime);
+  });
+}
+
+function startMetronome() {
+  if (isMetronomeOn) return;
+  let intervalTime = 60000 / beatsPerMinute;
+  metronomeInterval = setInterval(() => {
+    let metronomeSound = new Audio("./sounds/snare.wav");
+    metronomeSound.play();
+  }, intervalTime);
+  isMetronomeOn = true;
+}
+
+function stopMetronome() {
+  clearInterval(metronomeInterval);
+  isMetronomeOn = false;
+}
+
+document.getElementById('metronomeToggleButton').addEventListener('click', () => {
+  if (isMetronomeOn) {
+    stopMetronome();
+  } else {
+    startMetronome();
+  }
 });
 
-
-
-
-
+document.getElementById('bpmInput').addEventListener('change', (event) => {
+  beatsPerMinute = parseInt(event.target.value);
+  if (isMetronomeOn) {
+    stopMetronome();
+    startMetronome();
+  }
+});

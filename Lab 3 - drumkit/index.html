@@ -15,15 +15,23 @@
     <audio src="./sounds/snare.wav" controls data-key="x" id="s7"></audio>
     <audio src="./sounds/tink.wav" controls data-key="c" id="s8"></audio>
     <audio src="./sounds/tom.wav" controls data-key="q" id="s9"></audio>
+    
     <button id="recordButton">Nagraj</button>
+    
     <button id="playSingleChannelButton">Odtwórz wybrany kanał</button>
+
     <select id="channelSelect">
       <option value="0">Kanał 1</option>
       <option value="1">Kanał 2</option>
       <option value="2">Kanał 3</option>
       <option value="3">Kanał 4</option>
     </select>
+
     <button id="playAllChannelsButton">Odtwórz wszystkie kanały</button>
+
+    <button id="metronomeToggleButton">Włącz/Wyłącz metronom</button>
+    <input type="number" id="bpmInput" min="30" max="300" value="120" /> BPM
+
     <script src="main.js"></script>
   </body>
 </html>
