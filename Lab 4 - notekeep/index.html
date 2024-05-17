@@ -1,11 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script src="main.js"></script>
-</body>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aplikacja Notatki</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Notatki</h1>
+      <div class="note-form">
+        <input type="text" id="title" placeholder="Tytuł" required />
+        <textarea id="content" placeholder="Treść" required></textarea>
+        <input type="color" id="color" value="#ffffff" />
+        <label> <input type="checkbox" id="pin" /> Przypnij </label>
+        <button id="addNote">Dodaj Notatkę</button>
+      </div>
+      <div id="notes" class="notes"></div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
