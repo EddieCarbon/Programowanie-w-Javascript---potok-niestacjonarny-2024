@@ -95,15 +95,17 @@ function stopMetronome() {
   isMetronomeOn = false;
 }
 
-document.getElementById('metronomeToggleButton').addEventListener('click', () => {
-  if (isMetronomeOn) {
-    stopMetronome();
-  } else {
-    startMetronome();
-  }
-});
+document
+  .getElementById("metronomeToggleButton")
+  .addEventListener("click", () => {
+    if (isMetronomeOn) {
+      stopMetronome();
+    } else {
+      startMetronome();
+    }
+  });
 
-document.getElementById('bpmInput').addEventListener('change', (event) => {
+document.getElementById("bpmInput").addEventListener("change", (event) => {
   beatsPerMinute = parseInt(event.target.value);
   if (isMetronomeOn) {
     stopMetronome();
