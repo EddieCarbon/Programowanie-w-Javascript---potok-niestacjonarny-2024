@@ -94,10 +94,6 @@ function checkCollision() {
   }
 }
 
-// function animate() {
-//   requestAnimationFrame(animate);
-// }
-
 requestAnimationFrame(animate);
 
 
